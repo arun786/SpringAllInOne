@@ -33,15 +33,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/v1/public/books/*").hasRole(rolename).antMatchers("/v1/private/book")
+		http.csrf().disable().authorizeRequests().antMatchers("/v1/**","/swagger-ui.html")
 				.hasRole(rolename).and().formLogin();
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		String username[] = usernames.split(",");
-		for (String user : username)
-			authenticationManagerBuilder.inMemoryAuthentication().withUser(user).password("{noop}" + password)
+		/*String username[] = usernames.split(",");
+		for (String user : username)*/
+			authenticationManagerBuilder.inMemoryAuthentication().withUser(usernames).password("{noop}" + password)
 					.roles(rolename);
 	}
 }

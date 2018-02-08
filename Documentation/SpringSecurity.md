@@ -67,12 +67,13 @@ Steps to override Basic Security which Spring provides.
 			@Value("${spring.data.password}")
 			private String password;
 		
-			@Value("${spring.data.role}")
+			@Value("${spring.data.role}")s
 			private String rolename;
 		
 			@Override
 			protected void configure(HttpSecurity http) throws Exception {
-				http.authorizeRequests().antMatchers("/v1/public/books").hasRole(rolename).and().formLogin();
+				http.csrf().disable().authorizeRequests().antMatchers("/v1/**")
+						.hasRole(rolename).and().formLogin();
 			}
 		
 			@Override
