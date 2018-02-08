@@ -10,8 +10,8 @@ public interface BookInterfaceRepository {
 
 	long createABook(Books book);
 
-	Books getABook(int id);
+	Books getABook(long id);
 
-	Boolean deleteABook(int id);
+	Boolean deleteABook(long id);
 
 }

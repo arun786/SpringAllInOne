@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -36,5 +37,11 @@ public class BooksController {
 	public ResponseEntity<Long> createABook(@RequestBody Books book) {
 		long primaryKey = bookInterfaceRepository.createABook(book);
 		return new ResponseEntity<Long>(primaryKey, HttpStatus.CREATED);
+	}
+
+	@DeleteMapping("/v1/public/books/delete/{id}")
+	public ResponseEntity<Boolean> deleteABook(@PathVariable final long id) {
+		boolean isDeleted = bookInterfaceRepository.deleteABook(id);
+		return new ResponseEntity<Boolean>(isDeleted, HttpStatus.GONE);
 	}
 }

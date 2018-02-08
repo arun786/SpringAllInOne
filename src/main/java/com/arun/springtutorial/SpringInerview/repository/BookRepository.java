@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -38,8 +39,13 @@ public class BookRepository implements BookInterfaceRepository {
 	}
 
 	@Override
-	public Boolean deleteABook(int id) {
-		return null;
+	public Boolean deleteABook(long id) {
+		Books book = getABook(id);
+		int rowsAffected = 0;
+		if (null != book) {
+			rowsAffected = jdbcTemplate.update("delete from books where id = ?", new Object[] { id });
+		}
+		return rowsAffected > 0 ? true : false;
 	}
 
 	@Override
