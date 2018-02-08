@@ -30,8 +30,11 @@ public class BookRepository implements BookInterfaceRepository {
 	}
 
 	@Override
-	public Books getABook(int id) {
-		return null;
+	public Books getABook(long id) {
+
+		Books book = jdbcTemplate.queryForObject("select * from books where id = ?", new Object[] { id },
+				new BookMapper());
+		return book;
 	}
 
 	@Override
@@ -47,14 +50,14 @@ public class BookRepository implements BookInterfaceRepository {
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			@Override
 			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				final PreparedStatement ps = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-				ps.setString(1,book.getAuthorName());
-				ps.setString(2,book.getBookName());
-				ps.setDate(3,(Date) book.getPublishedDate());
-				ps.setString(4,book.getPublisherName());
+				final PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				ps.setString(1, book.getAuthorName());
+				ps.setString(2, book.getBookName());
+				ps.setDate(3, (Date) book.getPublishedDate());
+				ps.setString(4, book.getPublisherName());
 				return ps;
 			}
-		},key);
+		}, key);
 		return key.getKey().longValue();
 	}
 }

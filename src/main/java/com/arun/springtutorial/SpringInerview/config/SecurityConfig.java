@@ -13,12 +13,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  *
  * @Configuration overrides the spring framework auto-configuration for Security
  *                for this bean.
- *                
+ * 
  * @EnableWebSecurity enables Spring Security and overrides the default
  *                    security, but this annotation is not enough in itself, it
  *                    needs WebSecurityConfigurerAdapter for security in Spring
  */
-@Configuration
+// @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -33,14 +33,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/v1/public/books").hasRole(rolename).and().formLogin();
+		http.authorizeRequests().antMatchers("/v1/public/books/*").hasRole(rolename).antMatchers("/v1/private/book")
+				.hasRole(rolename).and().formLogin();
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		String username [] = usernames.split(",");
-		for(String user : username)
-		authenticationManagerBuilder.inMemoryAuthentication().withUser(user).password("{noop}" + password)
-				.roles(rolename);
+		String username[] = usernames.split(",");
+		for (String user : username)
+			authenticationManagerBuilder.inMemoryAuthentication().withUser(user).password("{noop}" + password)
+					.roles(rolename);
 	}
 }
