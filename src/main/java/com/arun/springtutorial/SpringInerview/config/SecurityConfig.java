@@ -18,7 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  *                    security, but this annotation is not enough in itself, it
  *                    needs WebSecurityConfigurerAdapter for security in Spring
  */
-// @Configuration
+@Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
