@@ -21,7 +21,16 @@ public class BooksController {
 	@Autowired
 	private BookInterfaceRepository bookInterfaceRepository;
 
-	@GetMapping("/v1/public/books")
+	/**
+	 * 
+	 * @return
+	 * @GetMapping is shortcut to @RequestMapping(path="/v1/public/books",
+	 *             method=RequestMethod.GET)
+	 * 
+	 *             ResponseEntity sends the response with body and status but
+	 *             with no header.
+	 */
+	@GetMapping(path = "/v1/public/books", produces = "application/json", name = "getAllBooks")
 	public ResponseEntity<List<Books>> getAllBooks() {
 		List<Books> books = bookInterfaceRepository.getAllBooks();
 		return new ResponseEntity<List<Books>>(books, HttpStatus.OK);
