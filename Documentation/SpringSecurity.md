@@ -84,3 +84,11 @@ Steps to override Basic Security which Spring provides.
 			}
 		}
 
+
+
+values which are defined in the properties file are as under.
+
+	spring.data.name=arun,adwiti
+	spring.data.password=thepassword
+	spring.data.role=admin
+	
