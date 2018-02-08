@@ -92,3 +92,9 @@ values which are defined in the properties file are as under.
 	spring.data.password=thepassword
 	spring.data.role=admin
 	
+
+## Security using database where the username and the password is stored,
+
+AuthenticationManagerBuilder has  methods which takes in Datasource to get the details from the database.
+we need to pass the query to get the details.
+	

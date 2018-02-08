@@ -2,7 +2,10 @@
 
 if we have properties files other than application.properties file, we need to follow the following.
 
-1. In the main application, where @SpringBootApplication is defined, we need to add @PropertySource("classpath:<name of the Property file>")
+1. In the main application, where
+ 	@SpringBootApplication is defined, we need to add
+ 	@PropertySource("classpath:<name of the Property file>") or
+	@PropertySource({"classpath:database.properties","classpath:security.properties"})
 
 2. where we are referring the file, we will be using @Value, but here the values will be automatically assigned.
 
@@ -20,7 +23,8 @@ Database.properties
 2. Changes to the main application.
 
 	@SpringBootApplication
-	@PropertySource("classpath:database.properties")
+	//@PropertySource("classpath:database.properties")
+	@PropertySource({"classpath:database.properties","classpath:security.properties"})
 	public class SpringInerviewApplication {
 	
 		public static void main(String[] args) {
