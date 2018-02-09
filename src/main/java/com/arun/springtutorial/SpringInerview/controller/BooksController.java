@@ -67,4 +67,10 @@ public class BooksController {
 		boolean isDeleted = bookInterfaceService.deleteABook(id);
 		return new ResponseEntity<Boolean>(isDeleted, HttpStatus.GONE);
 	}
+	
+	@GetMapping("/v1/pubic/books/course")
+	public ResponseEntity<List<Books>> getAllCourseWithBooks() {
+		List<Books> books = bookInterfaceService.getBooksWithCourses();
+		return new ResponseEntity<List<Books>>(books, HttpStatus.OK);
+	}
 }

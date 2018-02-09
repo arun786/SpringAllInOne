@@ -2,6 +2,10 @@ package com.arun.springtutorial.SpringInerview.bean;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 public class Books {
 
 	private long id;
@@ -9,6 +13,15 @@ public class Books {
 	private String publisherName;
 	private String authorName;
 	private Date publishedDate;
+	private Course course;
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
 
 	public long getId() {
 		return id;

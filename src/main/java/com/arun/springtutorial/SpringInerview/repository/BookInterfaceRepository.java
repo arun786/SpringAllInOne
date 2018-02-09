@@ -13,5 +13,7 @@ public interface BookInterfaceRepository {
 	Books getABook(long id);
 
 	Boolean deleteABook(long id);
+	
+	public List<Books> getBooksWithCourses();
 
 }

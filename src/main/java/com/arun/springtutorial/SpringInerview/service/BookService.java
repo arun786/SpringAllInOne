@@ -40,4 +40,10 @@ public class BookService implements BookInterfaceService{
 		return bookInterfaceRepository.deleteABook(id);
 	}
 
+	@Override
+	public List<Books> getBooksWithCourses() {
+		// TODO Auto-generated method stub
+		return bookInterfaceRepository.getBooksWithCourses();
+	}
+
 }

@@ -12,5 +12,7 @@ public interface BookInterfaceService {
 	Books getABook(long id);
 
 	Boolean deleteABook(long id);
+	
+	public List<Books> getBooksWithCourses();
 
 }
